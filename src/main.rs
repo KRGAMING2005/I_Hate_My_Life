@@ -1,9 +1,11 @@
-fn maybe_string() -> String {
-    return "Hello".to_string();
+use reqwest;
+
+#[tokio::main]
+async fn test() {
+    let result = reqwest::get("https://am.i.mullvad.net/connected").await.unwrap().text().await;
+    
+    println!("{:?}", result);
 }
-
 fn main() {
-    let a = maybe_string();
-
-    println!("{}", a);
+    test();
 }
